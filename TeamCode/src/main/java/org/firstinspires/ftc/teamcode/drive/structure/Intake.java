@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.drive.structure;
 
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
@@ -8,6 +9,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 public class Intake {
 
     public DcMotor intakeWing = null;
+    public CRServo pushWing = null;
 
     public IntakeModes RobotIntake = IntakeModes.STOP;
 

@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.drive.structure;
 
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 //Clasa pentru partea de outtake
@@ -32,20 +33,22 @@ public class Outtake {
         outtakeWing.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         outtakeWing.setPower(0);
 
-        pushWing = hwMap.get(CRServo.class, "Push_Wing");
+        pushWing = hwMap.crservo.get("Push_Wing");
+        pushWing.setDirection(DcMotorSimple.Direction.FORWARD);
         pushWing.setPower(0);
+
     }
 
     public void update(){
         switch (RobotOuttake){
             case OUT:{
-                outtakeWing.setPower(-0.75);
+                outtakeWing.setPower(-0.7);
                 pushWing.setPower(1.0);
                 break;
             }
             case STOP:{
                 outtakeWing.setPower(0);
-                pushWing.setPower(0);
+                pushWing.setPower(0.02);
                 break;
             }
             case REVERSE:{
@@ -60,6 +63,4 @@ public class Outtake {
     public void switchToOUT() {RobotOuttake = OuttakeModes.OUT;}
 
     public void switchToSTOP() {RobotOuttake = OuttakeModes.STOP;}
-
-    public void switchToREVERSE() {RobotOuttake = OuttakeModes.REVERSE;}
 }

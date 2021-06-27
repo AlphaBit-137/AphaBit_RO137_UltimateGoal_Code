@@ -27,11 +27,12 @@ public class Legacy_opmode_UltimateGoal extends LinearOpMode {
     Intake intake = new Intake();
     Outtake outtake = new Outtake();
 
-    Modes SpeedModes = Modes.FAST;
+    Modes SpeedModes = Modes.MEDIUM;
 
     enum Modes{
         FAST,
         SLOW,
+        MEDIUM,
     }
 
     @Override
@@ -105,11 +106,25 @@ public class Legacy_opmode_UltimateGoal extends LinearOpMode {
 
                 MS(Drive1, Drive2, Drive3, Drive4);
             }
+            if(SpeedModes==Modes.MEDIUM)
+            {
+                Sum = Range.clip(Front + Side, -0.7, 0.7);
+                Diff = Range.clip(Front - Side, -0.7, 0.7);
+
+                Drive1 = Range.clip(Sum - 2*Turn, -0.7, 0.7);
+                Drive2 = Range.clip(Sum + 2*Turn, -0.7, 0.7);
+                Drive3 = Range.clip(Diff - 2*Turn, -0.7, 0.7);
+                Drive4 = Range.clip(Diff + 2*Turn, -0.7, 0.7);
+
+                MS(Drive1, Drive2, Drive3, Drive4);
+            }
 
             if (gamepad1.a)
-                SpeedModes = Modes.FAST;
+                SpeedModes = Modes.MEDIUM;
             if (gamepad1.b)
                 SpeedModes = Modes.SLOW;
+            if (gamepad1.y)
+                SpeedModes= Modes.FAST;
 
             //Intake
             if(gamepad2.left_bumper){
@@ -128,12 +143,12 @@ public class Legacy_opmode_UltimateGoal extends LinearOpMode {
                 outtake.switchToSTOP();
             }
 
-            if (gamepad2.b){
+          /* if (gamepad2.b){
                 outtake.switchToREVERSE();
             }
             else{
                 outtake.switchToSTOP();
-            }
+            }*/
 
             //telemetry.addData("Motors", "BackLeft (%.2f), FrontRight (%.2f), FrontLeft (%.2f), BackRight (%.2f)", Drive1, Drive2, Drive3, Drive4);
             telemetry.addData("Informatie:", "Atentie! Programul a fost sting.");
@@ -143,6 +158,8 @@ public class Legacy_opmode_UltimateGoal extends LinearOpMode {
                 telemetry.addData("Chasis", "FAST");
             if (SpeedModes == Modes.SLOW)
                 telemetry.addData("Chasis", "SLOW");
+            if (SpeedModes == Modes.MEDIUM)
+                telemetry.addData("Chasis", "MEDIUM");
 
             //Intake
             if(intake.RobotIntake == Intake.IntakeModes.IN){
