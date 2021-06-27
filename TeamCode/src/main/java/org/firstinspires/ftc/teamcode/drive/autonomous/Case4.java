@@ -60,27 +60,34 @@ public class Case4 extends LinearOpMode {
         while (isStarted()==false && isStopRequested()==false){
             waitForStart();
 
-            BackLeft.setPower(0.7);
-            FrontRight.setPower(0.7);
-            FrontLeft.setPower(0.7);
-            BackRight.setPower(0.7);
+            BackLeft.setPower(0.8);
+            FrontRight.setPower(0.8);
+            FrontLeft.setPower(0.8);
+            BackRight.setPower(0.8);
             runtime.reset();
-            while(runtime.seconds() <= 1.8) {
+            while(runtime.seconds() <= 1.75) {
 
             }
-
-
             BackLeft.setPower(0);
             FrontRight.setPower(0);
             FrontLeft.setPower(0);
             BackRight.setPower(0);
 
-            FrontLeft.setPower(-0.25);
-            BackRight.setPower(-0.25);
-            FrontRight.setPower(0.25);
-            BackLeft.setPower(0.25);
+            sleep(200);
+
+            OuttakeMotor.setPower(-1.0);
             runtime.reset();
-            while(runtime.seconds() <= 1.4) {
+            while (runtime.seconds() <= 1.5){
+
+            }
+            OuttakeMotor.setPower(0);
+
+            FrontLeft.setPower(-0.4);
+            BackRight.setPower(-0.4);
+            FrontRight.setPower(0.4);
+            BackLeft.setPower(0.4);
+            runtime.reset();
+            while(runtime.seconds() <= 1.45) {
 
             }
             BackLeft.setPower(0);
@@ -94,7 +101,7 @@ public class Case4 extends LinearOpMode {
             FrontLeft.setPower(-0.4);
             BackRight.setPower(-0.4);
             runtime.reset();
-            while(runtime.seconds() <= 1.5) {
+            while(runtime.seconds() <= 1.60) {
 
             }
             BackLeft.setPower(0);
@@ -102,14 +109,25 @@ public class Case4 extends LinearOpMode {
             FrontLeft.setPower(0);
             BackRight.setPower(0);
 
-            OuttakeMotor.setPower(-0.7);
+            BackLeft.setPower(-0.25);
+            FrontLeft.setPower(-0.25);
+            BackRight.setPower(0.25);
+            FrontRight.setPower(0.25);
+            runtime.reset();
+            while (runtime.seconds() <= 0.17){
+
+            }
+            BackLeft.setPower(0);
+            FrontLeft.setPower(0);
+            BackRight.setPower(0);
+            FrontRight.setPower(0);
+
+            OuttakeMotor.setPower(-0.67);
             PushServo.setPower(1.0);
             runtime.reset();
-
             while (runtime.seconds() <= 15){
 
             }
-
             PushServo.setPower(0);
             OuttakeMotor.setPower(0);
 
@@ -118,7 +136,7 @@ public class Case4 extends LinearOpMode {
             BackRight.setPower(0.3);
             FrontRight.setPower(0.3);
             runtime.reset();
-            while(runtime.seconds() <= 0.5 ) {
+            while(runtime.seconds() <= 0.68 ) {
 
             }
             BackLeft.setPower(0);

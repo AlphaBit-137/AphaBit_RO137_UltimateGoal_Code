@@ -39,16 +39,15 @@ public class RingDetector extends LinearOpMode {
 
         // Camera Init
 
-        webcam.openCameraDevice();
-
         // Loading pipeline
-        RingPipeline visionPipeline = new RingPipeline();
+        RingPipeline_TEST visionPipeline = new RingPipeline_TEST();
         webcam.setPipeline(visionPipeline);
 
         // Start streaming the pipeline
         webcam.startStreaming(320,240,OpenCvCameraRotation.UPRIGHT);
 
         waitForStart();
+
 
         while (opModeIsActive())
         {
@@ -60,7 +59,7 @@ public class RingDetector extends LinearOpMode {
     }
 
     // Pipeline class
-    class RingPipeline extends OpenCvPipeline {
+    class RingPipeline_TEST extends OpenCvPipeline {
 
 
         // Working Mat variables
@@ -77,11 +76,11 @@ public class RingDetector extends LinearOpMode {
         public int ring4;
 
         // Space which we will annalise data
-        public Point BigSquare1 = new Point(X_LEFT, Y_UP);
-        public Point BigSquare2 = new Point(X_RIGHT, Y_DOWN);
+        public Point BigSquare1 = new Point(90, 216);
+        public Point BigSquare2 = new Point(1, 177);
 
-        public Point SmallSquare1 = new Point(X_LEFT, Y_MIDDLE);
-        public Point SmallSquare2 = new Point(X_RIGHT, Y_DOWN);
+        public Point SmallSquare1 = new Point(90, 200);
+        public Point SmallSquare2 = new Point(1, 180);
 
         @Override
         public Mat processFrame(Mat input) {
@@ -89,7 +88,7 @@ public class RingDetector extends LinearOpMode {
             // Img processing
             Imgproc.cvtColor(input, YCrCb, Imgproc.COLOR_BGR2YCrCb);
             Core.extractChannel(YCrCb, Cb, 2);
-            Imgproc.threshold(Cb, tholdMat, 150, 255, Imgproc.THRESH_BINARY_INV);
+            Imgproc.threshold(Cb, tholdMat, 134, 255, Imgproc.THRESH_BINARY_INV);
 
             // Drawing Points
             int BigSquarePointX = (int) ((BigSquare1.x + BigSquare2.x) / 2);
@@ -98,14 +97,12 @@ public class RingDetector extends LinearOpMode {
             int SmallSquarePointX = (int) ((SmallSquare1.x + SmallSquare2.x) / 2);
             int SmallSquarePointY = (int) ((SmallSquare1.y + SmallSquare2.y) / 2);
 
-            // Point BigSquarePoint = new Point((int)((BigSquare1.x + BigSqare2.x) / 2),(int)((BigSquare1.y + SmallSquare1.y) / 2));
-            // Point SmallSquarePoint = new Point((int)((SmallSquare1.x + SmallSquare2.x) / 2),(int)((SmallSquare1.y + SmallSquare2.y) / 2));
-
             double[] bigSquarePointValues = tholdMat.get(BigSquarePointY, BigSquarePointX);
             double[] smallSquarePointValues = tholdMat.get(SmallSquarePointY, SmallSquarePointX);
 
             ring4 = (int) bigSquarePointValues[0];
             ring1 = (int) smallSquarePointValues[0];
+
 
             // Big Square
             Imgproc.rectangle(
