@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Autonomous(group = "Autonomous")
-public class Case1 extends LinearOpMode {
+public class Case0 extends LinearOpMode {
 
     private ElapsedTime runtime = new ElapsedTime();
     public static double WHEEL_RADIUS = 5;
@@ -66,44 +66,18 @@ public class Case1 extends LinearOpMode {
 
 
 
-            FrontLeft.setPower(0.3);
-            BackLeft.setPower(0.3);
-            FrontRight.setPower(0.3);
-            BackRight.setPower(0.3);
+            BackLeft.setPower(0.7);
+            FrontRight.setPower(0.7);
+            FrontLeft.setPower(0.7);
+            BackRight.setPower(0.7);
             runtime.reset();
-            while (runtime.seconds() <= 2.8){
+            while(runtime.seconds() <= 1.15) {
+
 
             }
-            FrontLeft.setPower(0);
             BackLeft.setPower(0);
             FrontRight.setPower(0);
-            BackRight.setPower(0);
-
-            FrontLeft.setPower(-0.3);
-            BackLeft.setPower(0.3);
-            FrontRight.setPower(0.3);
-            BackRight.setPower(-0.3);
-            runtime.reset();
-            while (runtime.seconds() <= 2.2){
-
-            }
-
             FrontLeft.setPower(0);
-            BackLeft.setPower(0);
-            FrontRight.setPower(0);
-            BackRight.setPower(0);
-
-            FrontLeft.setPower(0.9);
-            BackLeft.setPower(0.9);
-            FrontRight.setPower(0.9);
-            BackRight.setPower(0.9);
-            runtime.reset();
-            while (runtime.seconds() <= 0.4){
-
-            }
-            FrontLeft.setPower(0);
-            BackLeft.setPower(0);
-            FrontRight.setPower(0);
             BackRight.setPower(0);
 
             sleep(200);
@@ -115,149 +89,81 @@ public class Case1 extends LinearOpMode {
             }
             OuttakeMotor.setPower(0);
 
+            BackLeft.setPower(-0.75);
+            FrontRight.setPower(-0.75);
+            FrontLeft.setPower(-0.75);
+            BackRight.setPower(-0.75);
+            runtime.reset();
+            while(runtime.seconds() <= 0.15) {
+
+            }
+            BackLeft.setPower(0);
+            FrontRight.setPower(0);
+            FrontLeft.setPower(0);
+            BackRight.setPower(0);
+
+            BackLeft.setPower(0.3);
             FrontLeft.setPower(-0.3);
-            BackLeft.setPower(-0.3);
-            FrontRight.setPower(-0.3);
             BackRight.setPower(-0.3);
-            runtime.reset();
-            while (runtime.seconds() <= 1.4){
-
-            }
-            FrontLeft.setPower(0);
-            BackLeft.setPower(0);
-            FrontRight.setPower(0);
-            BackRight.setPower(0);
-
-            FrontLeft.setPower(-0.3);
-            BackLeft.setPower(-0.3);
             FrontRight.setPower(0.3);
-            BackRight.setPower(0.3);
             runtime.reset();
-            while (runtime.seconds() <= 0.20){
+            while(runtime.seconds() <= 1.9 ) {
 
             }
-            FrontLeft.setPower(0);
             BackLeft.setPower(0);
-            FrontRight.setPower(0);
-            BackRight.setPower(0);
-
-            PushServo.setPower(1);
-            OuttakeMotor.setPower(-0.66);
-            runtime.reset();
-            while (runtime.seconds() <= 10){
-
-            }
-
-            PushServo.setPower(0);
-            OuttakeMotor.setPower(0);
-
-            FrontLeft.setPower(-0.2);
-            BackLeft.setPower(-0.2);
-            FrontRight.setPower(0.2);
-            BackRight.setPower(0.2);
-            runtime.reset();
-            while (runtime.seconds() <= 0.1){
-
-            }
             FrontLeft.setPower(0);
-            BackLeft.setPower(0);
-            FrontRight.setPower(0);
             BackRight.setPower(0);
+            FrontRight.setPower(0);
 
-
-
-            FrontLeft.setPower(-0.4);
-            BackLeft.setPower(0.4);
-            FrontRight.setPower(0.4);
-            BackRight.setPower(-0.4);
+            BackLeft.setPower(-0.25);
+            FrontLeft.setPower(-0.25);
+            BackRight.setPower(-0.25);
+            FrontRight.setPower(-0.25);
             runtime.reset();
-            while (runtime.seconds() <= 0.45){
+            while (runtime.seconds() <= 0.3){
 
             }
-            FrontLeft.setPower(0);
             BackLeft.setPower(0);
-            FrontRight.setPower(0);
+            FrontLeft.setPower(0);
             BackRight.setPower(0);
+            FrontRight.setPower(0);
 
-
-            intakeWing.setPower(-1.0);
-            FrontLeft.setPower(-0.4);
-            BackLeft.setPower(-0.4);
-            FrontRight.setPower(-0.4);
-            BackRight.setPower(-0.4);
+            BackLeft.setPower(-0.25);
+            FrontLeft.setPower(-0.25);
+            BackRight.setPower(0.25);
+            FrontRight.setPower(0.25);
             runtime.reset();
-            while (runtime.seconds() <= 1.2){
+            while (runtime.seconds() <= 0.18){
 
             }
-            FrontLeft.setPower(0);
             BackLeft.setPower(0);
-            FrontRight.setPower(0);
-            BackRight.setPower(0);
-
-            FrontLeft.setPower(0.4);
-            BackLeft.setPower(0.4);
-            FrontRight.setPower(0.4);
-            BackRight.setPower(0.4);
-            runtime.reset();
-            while (runtime.seconds() <= 1.0){
-
-            }
             FrontLeft.setPower(0);
-            BackLeft.setPower(0);
-            FrontRight.setPower(0);
             BackRight.setPower(0);
-
-            FrontLeft.setPower(-0.3);
-            BackLeft.setPower(-0.3);
-            FrontRight.setPower(0.3);
-            BackRight.setPower(0.3);
-            runtime.reset();
-            while (runtime.seconds() <= 0.1){
-
-            }
-            FrontLeft.setPower(0);
-            BackLeft.setPower(0);
             FrontRight.setPower(0);
-            BackRight.setPower(0);
 
-
-
-            OuttakeMotor.setPower(-0.69);
+            OuttakeMotor.setPower(-0.65);
             PushServo.setPower(1.0);
             runtime.reset();
-            while (runtime.seconds() <= 6.6){
+            while (runtime.seconds() <= 15){
 
             }
-            OuttakeMotor.setPower(0);
             PushServo.setPower(0);
-            intakeWing.setPower(0);
+            OuttakeMotor.setPower(0);
 
-            FrontLeft.setPower(0.85);
-            BackLeft.setPower(0.85);
-            FrontRight.setPower(0.85);
-            BackRight.setPower(0.85);
+            BackLeft.setPower(0.3);
+            FrontLeft.setPower(0.3);
+            BackRight.setPower(0.3);
+            FrontRight.setPower(0.3);
             runtime.reset();
-            while (runtime.seconds() <= 0.25){
+            while(runtime.seconds() <= 0.8 ) {
 
             }
-            FrontLeft.setPower(0);
             BackLeft.setPower(0);
-            FrontRight.setPower(0);
+            FrontLeft.setPower(0);
             BackRight.setPower(0);
+            FrontRight.setPower(0);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+            sleep(8000);
         }
 
 

@@ -35,8 +35,6 @@ public class AtBuild extends LinearOpMode {
     public DcMotor intakeWing = null;
     NumberRing numberRing = new NumberRing();
 
-    OpenCvCamera webcam;
-
     public int caz;
 
     @Override
@@ -79,21 +77,21 @@ public class AtBuild extends LinearOpMode {
 
 
         while (!isStarted()) {
-            if (numberRing.ring_1 == 0 && numberRing.ring_4 == 0) {
+            if (numberRing.Big_percent < 85 && numberRing.Small_percent < 85) {
                 telemetry.addData("Cazul", 4);
-                telemetry.update();
                 caz = 4;
             }
-            if (numberRing.ring_1 != 0 && numberRing.ring_4 == 0) {
+            if (numberRing.Big_percent <85 && numberRing.Small_percent > 85) {
                 telemetry.addData("Cazul", 1);
-                telemetry.update();
                 caz = 1;
             }
-            if (numberRing.ring_1 != 0 && numberRing.ring_4 != 0) {
+            if (numberRing.Big_percent > 85 && numberRing.Small_percent > 85) {
                 telemetry.addData("Cazul", 0);
-                telemetry.update();
                 caz = 0;
             }
+            telemetry.addData("Big percentage", numberRing.Big_percent);
+            telemetry.addData("Small percentage", numberRing.Small_percent);
+            telemetry.update();
         }
 
         waitForStart();

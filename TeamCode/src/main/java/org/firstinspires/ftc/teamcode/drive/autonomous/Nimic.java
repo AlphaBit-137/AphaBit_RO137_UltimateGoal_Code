@@ -4,10 +4,13 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Autonomous(group = "Autonomous")
-public class Case4 extends LinearOpMode {
+public class Nimic extends LinearOpMode {
+
+    int n = 0;
 
     private ElapsedTime runtime = new ElapsedTime();
     public static double WHEEL_RADIUS = 5;
@@ -18,6 +21,7 @@ public class Case4 extends LinearOpMode {
     public DcMotor BackRight = null;
     public DcMotor OuttakeMotor = null;
     public CRServo PushServo = null;
+    public DcMotor intakeWing = null;
 
     public int distance_math(int distance) {
 
@@ -53,6 +57,9 @@ public class Case4 extends LinearOpMode {
         OuttakeMotor = hardwareMap.get(DcMotor.class, "Outtake_Wing");
         OuttakeMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         OuttakeMotor.setPower(0);
+        intakeWing = hardwareMap.get(DcMotor.class, "Intake_Wing");
+        intakeWing.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        intakeWing.setPower(0);
 
         PushServo = hardwareMap.get(CRServo.class, "Push_Wing");
         PushServo.setPower(0.01);
@@ -60,12 +67,16 @@ public class Case4 extends LinearOpMode {
         while (isStarted()==false && isStopRequested()==false){
             waitForStart();
 
-            BackLeft.setPower(0.8);
-            FrontRight.setPower(0.8);
-            FrontLeft.setPower(0.8);
-            BackRight.setPower(0.8);
+            sleep(n);
+
+
+            BackLeft.setPower(0.7);
+            FrontRight.setPower(0.7);
+            FrontLeft.setPower(0.7);
+            BackRight.setPower(0.7);
             runtime.reset();
-            while(runtime.seconds() <= 1.75) {
+            while(runtime.seconds() <= 1.15) {
+
 
             }
             BackLeft.setPower(0);
@@ -75,54 +86,7 @@ public class Case4 extends LinearOpMode {
 
             sleep(200);
 
-            OuttakeMotor.setPower(-1.0);
-            runtime.reset();
-            while (runtime.seconds() <= 1.5){
-
-            }
-            OuttakeMotor.setPower(0);
-
-            FrontLeft.setPower(-0.4);
-            BackRight.setPower(-0.4);
-            FrontRight.setPower(0.4);
-            BackLeft.setPower(0.4);
-            runtime.reset();
-            while(runtime.seconds() <= 1.45) {
-
-            }
-            BackLeft.setPower(0);
-            FrontRight.setPower(0);
-            FrontLeft.setPower(0);
-            BackRight.setPower(0);
-
-
-            BackLeft.setPower(-0.4);
-            FrontRight.setPower(-0.4);
-            FrontLeft.setPower(-0.4);
-            BackRight.setPower(-0.4);
-            runtime.reset();
-            while(runtime.seconds() <= 1.60) {
-
-            }
-            BackLeft.setPower(0);
-            FrontRight.setPower(0);
-            FrontLeft.setPower(0);
-            BackRight.setPower(0);
-
-            BackLeft.setPower(-0.25);
-            FrontLeft.setPower(-0.25);
-            BackRight.setPower(0.25);
-            FrontRight.setPower(0.25);
-            runtime.reset();
-            while (runtime.seconds() <= 0.17){
-
-            }
-            BackLeft.setPower(0);
-            FrontLeft.setPower(0);
-            BackRight.setPower(0);
-            FrontRight.setPower(0);
-
-            OuttakeMotor.setPower(-0.67);
+            OuttakeMotor.setPower(-0.65);
             PushServo.setPower(1.0);
             runtime.reset();
             while (runtime.seconds() <= 15){
@@ -136,7 +100,7 @@ public class Case4 extends LinearOpMode {
             BackRight.setPower(0.3);
             FrontRight.setPower(0.3);
             runtime.reset();
-            while(runtime.seconds() <= 0.68 ) {
+            while(runtime.seconds() <= 0.8 ) {
 
             }
             BackLeft.setPower(0);
@@ -144,9 +108,10 @@ public class Case4 extends LinearOpMode {
             BackRight.setPower(0);
             FrontRight.setPower(0);
 
+            sleep(8000);
 
         }
 
 
-        }
     }
+}
