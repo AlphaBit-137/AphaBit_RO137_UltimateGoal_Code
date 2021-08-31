@@ -3,19 +3,16 @@ package org.firstinspires.ftc.teamcode.drive.opmode;
 
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.teamcode.drive.structure.Intake;
 import org.firstinspires.ftc.teamcode.drive.structure.Outtake;
-import org.xml.sax.helpers.NamespaceSupport;
 
-@TeleOp(name = "Legacy_opmode_UltimateGoal", group = "Linear Opmode")
-public class Legacy_opmode_UltimateGoal extends LinearOpMode {
+@TeleOp(name = "Test", group = "Linear Opmode")
+public class Test extends LinearOpMode {
 
     //Daclararea motoarelor
     public DcMotor BackLeftMotor = null;
@@ -46,6 +43,7 @@ public class Legacy_opmode_UltimateGoal extends LinearOpMode {
         FrontLeftMotor = hardwareMap.get(DcMotor.class, "Front_Left");
         BackRightMotor = hardwareMap.get(DcMotor.class, "Back_Right");
 
+
         BackLeftMotor.setDirection(DcMotor.Direction.FORWARD);
         FrontRightMotor.setDirection(DcMotor.Direction.FORWARD);
         FrontLeftMotor.setDirection(DcMotor.Direction.REVERSE);
@@ -61,15 +59,13 @@ public class Legacy_opmode_UltimateGoal extends LinearOpMode {
         FrontLeftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         BackRightMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        intake.init(hardwareMap);
-        outtake.init(hardwareMap);
-
         runtime.reset();
         waitForStart();
 
-        // Atata timp cat OpMode-ul este activ va rula pana la oprire urmatorul cod
+        intake.init(hardwareMap);
+        outtake.init(hardwareMap);
 
-        while (opModeIsActive()) {
+        while (opModeIsActive()){
 
             //Initiallizam variabilele
             double Front, Turn, Sum, Diff, Side, Drive1, Drive2, Drive3, Drive4;
@@ -100,15 +96,42 @@ public class Legacy_opmode_UltimateGoal extends LinearOpMode {
                 BackRightMotor.setPower(0);
 
             //Calcularea puterii redate motoarelor
-            Sum = Range.clip(Front + Side, -1.0, 1.0);
-            Diff = Range.clip(Front - Side, -1.0, 1.0);
+            if (SpeedModes == Modes.FAST)
+            {
+                Sum = Range.clip(Front + Side, -1.0, 1.0);
+                Diff = Range.clip(Front - Side, -1.0, 1.0);
 
-            Drive1 = Range.clip(Sum - 2*Turn, -1.0, 1.0);
-            Drive2 = Range.clip(Sum + 2*Turn, -1.0, 1.0);
-            Drive3 = Range.clip(Diff - 2*Turn, -1.0, 1.0);
-            Drive4 = Range.clip(Diff + 2*Turn, -1.0, 1.0);
+                Drive1 = Range.clip(Sum - 2*Turn, -1.0, 1.0);
+                Drive2 = Range.clip(Sum + 2*Turn, -1.0, 1.0);
+                Drive3 = Range.clip(Diff - 2*Turn, -1.0, 1.0);
+                Drive4 = Range.clip(Diff + 2*Turn, -1.0, 1.0);
 
-            MS(Drive1, Drive2, Drive3, Drive4);
+                MS(Drive1, Drive2, Drive3, Drive4);
+            }
+            if (SpeedModes == Modes.SLOW)
+            {
+                Sum = Range.clip(Front + Side, -0.3, 0.3);
+                Diff = Range.clip(Front - Side, -0.3, 0.3);
+
+                Drive1 = Range.clip(Sum - 2*Turn, -0.3, 0.3);
+                Drive2 = Range.clip(Sum + 2*Turn, -0.3, 0.3);
+                Drive3 = Range.clip(Diff - 2*Turn, -0.3, 0.3);
+                Drive4 = Range.clip(Diff + 2*Turn, -0.3, 0.3);
+
+                MS(Drive1, Drive2, Drive3, Drive4);
+            }
+            if(SpeedModes==Modes.MEDIUM)
+            {
+                Sum = Range.clip(Front + Side, -0.7, 0.7);
+                Diff = Range.clip(Front - Side, -0.7, 0.7);
+
+                Drive1 = Range.clip(Sum - 2*Turn, -0.7, 0.7);
+                Drive2 = Range.clip(Sum + 2*Turn, -0.7, 0.7);
+                Drive3 = Range.clip(Diff - 2*Turn, -0.7, 0.7);
+                Drive4 = Range.clip(Diff + 2*Turn, -0.7, 0.7);
+
+                MS(Drive1, Drive2, Drive3, Drive4);
+            }
 
             if (gamepad1.a)
                 SpeedModes = Modes.MEDIUM;
@@ -174,6 +197,7 @@ public class Legacy_opmode_UltimateGoal extends LinearOpMode {
             intake.update();
             outtake.update();
             telemetry.update();
+
         }
 
     }

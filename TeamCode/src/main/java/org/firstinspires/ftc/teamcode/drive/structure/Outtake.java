@@ -42,13 +42,14 @@ public class Outtake {
     public void update(){
         switch (RobotOuttake){
             case OUT:{
-                outtakeWing.setPower(-0.7);
+                outtakeWing.setPower(-0.85);
                 pushWing.setPower(1.0);
                 break;
             }
             case STOP:{
                 outtakeWing.setPower(0);
-                pushWing.setPower(0.02);
+                // TO DO seteaza puterea la STOP astfel incat sa nu se miste
+                pushWing.setPower(0.01);
                 break;
             }
             case REVERSE:{
