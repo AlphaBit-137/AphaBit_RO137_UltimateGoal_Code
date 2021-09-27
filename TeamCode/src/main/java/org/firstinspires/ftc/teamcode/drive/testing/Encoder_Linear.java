@@ -78,7 +78,7 @@ public class Encoder_Linear extends LinearOpMode {
     static final double     COUNTS_PER_MOTOR_REV    = 384.5; ;    // eg: TETRIX Motor Encoder
     static final double     DRIVE_GEAR_REDUCTION    = 1 ;     // This is < 1.0 if geared UP
     static final double     WHEEL_DIAMETER_INCHES   = 10 ;     // For figuring circumference
-    static final double     COUNTS_PER_INCH         = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
+    static final double     COUNTS_PER_CM         = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
                                                       (WHEEL_DIAMETER_INCHES * 3.1415);
     static final double     DRIVE_SPEED             = 0.3;
     static final double     TURN_SPEED              = 0.2;
@@ -107,7 +107,7 @@ public class Encoder_Linear extends LinearOpMode {
         chasis.BackLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         // Send telemetry message to indicate successful Encoder reset
-        telemetry.addData("Path0",  "Starting at %7d :%7d",
+        telemetry.addData("Path0",  "Starting at %7d :%7d :%7d :%7d",
                           chasis.FrontRight.getCurrentPosition(),
                           chasis.FrontLeft.getCurrentPosition(),
                           chasis.BackRight.getCurrentPosition(),
@@ -151,10 +151,10 @@ public class Encoder_Linear extends LinearOpMode {
         if (opModeIsActive()) {
 
             // Determine new target position, and pass to motor controller
-            newLeftUpTarget = chasis.FrontLeft.getCurrentPosition() + (int)(leftCentiMeters * COUNTS_PER_INCH);
-            newRightUpTarget = chasis.FrontRight.getCurrentPosition() + (int)(righCentiMeters * COUNTS_PER_INCH);
-            newLeftDownTarget= chasis.BackLeft.getCurrentPosition() + (int)(leftCentiMeters * COUNTS_PER_INCH);
-            newRightDownTarget= chasis.BackRight.getCurrentPosition() + (int)(righCentiMeters * COUNTS_PER_INCH);
+            newLeftUpTarget = chasis.FrontLeft.getCurrentPosition() + (int)(leftCentiMeters * COUNTS_PER_CM);
+            newRightUpTarget = chasis.FrontRight.getCurrentPosition() + (int)(righCentiMeters * COUNTS_PER_CM);
+            newLeftDownTarget= chasis.BackLeft.getCurrentPosition() + (int)(leftCentiMeters * COUNTS_PER_CM);
+            newRightDownTarget= chasis.BackRight.getCurrentPosition() + (int)(righCentiMeters * COUNTS_PER_CM);
 
             chasis.FrontLeft.setTargetPosition(newLeftUpTarget);
             chasis.FrontRight.setTargetPosition(newRightUpTarget);
@@ -185,8 +185,8 @@ public class Encoder_Linear extends LinearOpMode {
                    (chasis.BackLeft.isBusy() && chasis.BackRight.isBusy() && chasis.FrontLeft.isBusy() && chasis.FrontRight.isBusy())) {
 
                 // Display it for the driver.
-                telemetry.addData("Path1",  "Running to %7d :%7d", newLeftUpTarget,  newRightUpTarget, newLeftDownTarget, newLeftUpTarget);
-                telemetry.addData("Path2",  "Running at %7d :%7d",
+                telemetry.addData("Path1",  "Running to %7d :%7d :%7d :%7d", newLeftUpTarget,  newRightUpTarget, newLeftDownTarget, newLeftUpTarget);
+                telemetry.addData("Path2",  "Running at %7d :%7d :%7d :%7d",
                                             chasis.FrontRight.getCurrentPosition(),
                                             chasis.FrontLeft.getCurrentPosition(),
                                             chasis.BackRight.getCurrentPosition(),
@@ -206,7 +206,7 @@ public class Encoder_Linear extends LinearOpMode {
             chasis.BackRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             chasis.BackLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-            //  sleep(250);   // optional pause after each move
+            sleep(5000);   // optional pause after each move
         }
     }
 }
